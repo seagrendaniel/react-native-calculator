@@ -21,7 +21,7 @@ class BlinkGreeting extends Component {
 
       return (
         <View>
-          <Text style={styles.bigBlue}> Hello my name is {this.props.name}</Text>
+          <Text style={{top: 75}}> Hello my name is {this.props.name}</Text>
         </View>
       );
     
@@ -31,10 +31,16 @@ class BlinkGreeting extends Component {
 export default class LotsOfGreetings extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
+        <View style={{flex: 1, backgroundColor: 'lightblue'}}>
         <BlinkGreeting name={'Dan'} />
+        </View>
+        <View style={{flex: 2, backgroundColor: 'lightgreen'}}>
         <BlinkGreeting name={'Talia'} />
+        </View>
+        <View style={{flex: 3, backgroundColor: 'red'}}>
         <BlinkGreeting name={'Remi'} />
+        </View>
       </View>
     )
   }
@@ -42,10 +48,14 @@ export default class LotsOfGreetings extends Component {
 
 const styles = StyleSheet.create({
   bigBlue: {
+    right: 500,
     top: 150,
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: 'bold',
     color: 'blue',
     alignItems: 'center'
+  },
+  container: {
+    flex: 1
   }
 });
