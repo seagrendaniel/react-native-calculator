@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
-import Button from '../react-native-calculator/Components/Button/Button'
+import AlertButton from '../react-native-calculator/Components/Button/Button'
 
 class BlinkGreeting extends Component {
 
@@ -36,7 +36,7 @@ class NameInput extends Component {
 
   render(){
     return(
-      <View style={{top: 50, textAlign: 'center'}}>
+      <View style={{top: 50, left: 50, textAlign: 'center'}}>
         <TextInput
           style={{height: 40}}
           placeholder='Enter name here!'
@@ -48,23 +48,28 @@ class NameInput extends Component {
   }
 }
 
+
+
 export default class LotsOfGreetings extends Component {
   render() {
     return (
       <View style={styles.container}>
         <View style={{flex: 1, backgroundColor: 'lightblue'}}>
-          <Text style={{top: 50}}>Hi my name is </Text>
+          <Text style={{top: 50, left: 50}}>Hi my name is </Text>
           <NameInput/>
+          <AlertButton/>
         {/* <BlinkGreeting name={'Dan'} /> */}
         </View>
-        <View style={{flex: 2, backgroundColor: 'lightgreen'}}>
-          <Text style={{top: 50}}>Hi my name is </Text>
+        <View style={{flex: 1, backgroundColor: 'lightgreen'}}>
+          <Text style={{top: 50, left: 50}}>Hi my name is </Text>
           <NameInput/>
+          <AlertButton/>
         {/* <BlinkGreeting name={'Talia'} /> */}
         </View>
-        <View style={{flex: 3, backgroundColor: 'red'}}>
-          <Text style={{top: 50}}>Hi my name is </Text>
+        <View style={{flex: 1, backgroundColor: 'red'}}>
+          <Text style={{top: 50, left: 50}}>Hi my name is </Text>
           <NameInput/>
+          <AlertButton/>
         {/* <BlinkGreeting name={'Remi'} /> */}
         </View>
       </View>
