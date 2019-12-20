@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
 import Button from '../react-native-calculator/Components/Button/Button'
 
 class BlinkGreeting extends Component {
@@ -21,10 +21,30 @@ class BlinkGreeting extends Component {
 
       return (
         <View>
-          <Text style={{top: 75}}> Hello my name is {this.props.name}</Text>
+          <Text style={{top: 75, textAlign: 'center'}}> Hello my name is {this.props.name}</Text>
         </View>
       );
     
+  }
+}
+
+class NameInput extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {text : ''}
+  }
+
+  render(){
+    return(
+      <View style={{top: 50, textAlign: 'center'}}>
+        <TextInput
+          style={{height: 40}}
+          placeholder='Enter name here!'
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
+        />
+      </View>
+    )
   }
 }
 
@@ -33,13 +53,19 @@ export default class LotsOfGreetings extends Component {
     return (
       <View style={styles.container}>
         <View style={{flex: 1, backgroundColor: 'lightblue'}}>
-        <BlinkGreeting name={'Dan'} />
+          <Text style={{top: 50}}>Hi my name is </Text>
+          <NameInput/>
+        {/* <BlinkGreeting name={'Dan'} /> */}
         </View>
         <View style={{flex: 2, backgroundColor: 'lightgreen'}}>
-        <BlinkGreeting name={'Talia'} />
+          <Text style={{top: 50}}>Hi my name is </Text>
+          <NameInput/>
+        {/* <BlinkGreeting name={'Talia'} /> */}
         </View>
         <View style={{flex: 3, backgroundColor: 'red'}}>
-        <BlinkGreeting name={'Remi'} />
+          <Text style={{top: 50}}>Hi my name is </Text>
+          <NameInput/>
+        {/* <BlinkGreeting name={'Remi'} /> */}
         </View>
       </View>
     )
