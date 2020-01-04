@@ -13,6 +13,15 @@ class AlertButton extends Component {
         title='Press here'
         color='purple'
       />
+
+      <Button 
+      style={styles.orangeButton}
+      onPress={() => {
+        alert('You pressed the other button')
+      }}
+      title='Button 2'
+      color='red'
+      />
       </View>
     )
   }
