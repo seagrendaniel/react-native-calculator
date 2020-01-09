@@ -55,21 +55,20 @@ export default class LotsOfGreetings extends Component {
     return (
       <View style={styles.container}>
         <View style={{flex: 1, backgroundColor: 'lightblue'}}>
-          {/* <Text style={{top: 50, left: 50}}>Hi my name is </Text> */}
-          {/* <NameInput/> */}
+          <Text style={{top: 50, left: 50}}>Hi my name is </Text>
+          <NameInput/>
           <AlertButton/>
-          <AlertButton/>
-        {/* <BlinkGreeting name={'Dan'} /> */}
+        <BlinkGreeting name={'Dan'} />
         </View>
         <View style={{flex: 1, backgroundColor: 'lightgreen'}}>
-          {/* <Text style={{top: 50, left: 50}}>Hi my name is </Text> */}
-          {/* <NameInput/> */}
+          <Text style={{top: 50, left: 50}}>Hi my name is </Text>
+          <NameInput/>
           <AlertButton/>
         {/* <BlinkGreeting name={'Talia'} /> */}
         </View>
-        <View style={{flex: 1, backgroundColor: 'red'}}>
-          {/* <Text style={{top: 50, left: 50}}>Hi my name is </Text> */}
-          {/* <NameInput/> */}
+        <View style={{flex: 1, backgroundColor: 'pink'}}>
+          <Text style={{top: 50, left: 50}}>Hi my name is </Text>
+          <NameInput/>
           <AlertButton/>
         {/* <BlinkGreeting name={'Remi'} /> */}
         </View>
