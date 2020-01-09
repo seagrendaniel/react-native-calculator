@@ -28,6 +28,24 @@ class BlinkGreeting extends Component {
   }
 }
 
+class NumberInput extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {number : ''}
+  }
+  render(){
+    return(
+      <View>
+        <Button
+          title='1'
+          style=styles.
+        />
+
+      </View>
+    )
+  }
+}
+
 class NameInput extends Component {
   constructor(props) {
     super(props);
@@ -88,5 +106,10 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1
+  },
+  numberButton: {
+    fontSize: 20,
+    color: 'blue',
+    fontWeight: 'bold'
   }
 });
