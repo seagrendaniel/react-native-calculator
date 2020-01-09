@@ -58,6 +58,7 @@ export default class LotsOfGreetings extends Component {
           {/* <Text style={{top: 50, left: 50}}>Hi my name is </Text> */}
           {/* <NameInput/> */}
           <AlertButton/>
+          <AlertButton/>
         {/* <BlinkGreeting name={'Dan'} /> */}
         </View>
         <View style={{flex: 1, backgroundColor: 'lightgreen'}}>
