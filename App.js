@@ -108,6 +108,7 @@ export default class Calculator extends Component {
       <View style={{flex: 1}}>
 
         <View style={styles.ioDisplay}>
+          <Text style={styles.ioText}>{this.state.currentValue}</Text>
         </View>
 
         <View style={styles.calcButtonContainer}>
@@ -211,11 +212,12 @@ const styles = StyleSheet.create({
   },
   ioDisplay: {
     flex: 1,
-    backgroundColor: 'purple'
+    backgroundColor: 'white',
+    justifyContent: 'flex-end'
   },
   calcButtonContainer: {
     flex: 5,
-    // backgroundColor: 'red',
+    backgroundColor: 'black',
   },
   calcRow1: {
     flex: 1,
@@ -230,7 +232,7 @@ const styles = StyleSheet.create({
   calcButton1: {
     flex: 1,
     backgroundColor: 'green',
-    borderRadius: 5,
+    borderRadius: 3,
     borderWidth: 2.5,
     borderColor: 'black',
     justifyContent: 'center'
@@ -238,7 +240,7 @@ const styles = StyleSheet.create({
   calcButton2: {
     flex: 1,
     backgroundColor: 'orange',
-    borderRadius: 5,
+    borderRadius: 3,
     borderWidth: 2.5,
     borderColor: 'black',
     justifyContent: 'center'
@@ -246,10 +248,16 @@ const styles = StyleSheet.create({
   calcButton3: {
     flex: 2,
     backgroundColor: 'lightblue',
-    borderRadius: 5,
+    borderRadius: 3,
     borderWidth: 2.5,
     borderColor: 'black',
     justifyContent: 'center'
+  },
+  ioText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    textAlign: 'right',
+    textAlignVertical: 'bottom'
   },
   calcText: {
     fontSize: 40,
