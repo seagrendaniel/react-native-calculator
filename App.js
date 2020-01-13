@@ -111,35 +111,77 @@ export default class Calculator extends Component {
         </View>
 
         <View style={styles.calcButtonContainer}>
+          {/* Row 1 */}
         <View style={styles.calcRow1}>
-        <View style={styles.calcButton1}></View>
-        <View style={styles.calcButton2}></View>
-        <View style={styles.calcButton1}></View>
-        <View style={styles.calcButton2}></View>
+        <View style={styles.calcButton1}>
+          <Text style={styles.calcText}>A/C</Text>
         </View>
+        <View style={styles.calcButton2}>
+          <Text style={styles.calcText}> +/- </Text>
+        </View>
+        <View style={styles.calcButton1}>
+          <Text style={styles.calcText}> % </Text>
+        </View>
+        <View style={styles.calcButton2}>
+          <Text style={styles.calcText}> / </Text>
+        </View>
+        </View>
+        {/* Row 2 */}
         <View style={styles.calcRow2}>
-        <View style={styles.calcButton1}></View>
-        <View style={styles.calcButton2}></View>
-        <View style={styles.calcButton1}></View>
-        <View style={styles.calcButton2}></View>
+        <View style={styles.calcButton1}>
+          <Text style={styles.calcText}> 7 </Text>
         </View>
+        <View style={styles.calcButton2}>
+          <Text style={styles.calcText}> 8 </Text>
+        </View>
+        <View style={styles.calcButton1}>
+          <Text style={styles.calcText}> 9 </Text>
+        </View>
+        <View style={styles.calcButton2}>
+          <Text style={styles.calcText}> x </Text>
+        </View>
+        </View>
+        {/* Row 3 */}
         <View style={styles.calcRow1}>
-        <View style={styles.calcButton1}></View>
-        <View style={styles.calcButton2}></View>
-        <View style={styles.calcButton1}></View>
-        <View style={styles.calcButton2}></View>
+        <View style={styles.calcButton1}>
+          <Text style={styles.calcText}> 4 </Text>
         </View>
+        <View style={styles.calcButton2}>
+        <Text style={styles.calcText}> 5 </Text>
+        </View>
+        <View style={styles.calcButton1}>
+        <Text style={styles.calcText}> 6 </Text>
+        </View>
+        <View style={styles.calcButton2}>
+        <Text style={styles.calcText}> - </Text>
+        </View>
+        </View>
+        {/* Row 4 */}
         <View style={styles.calcRow2}>
-        <View style={styles.calcButton1}></View>
-        <View style={styles.calcButton2}></View>
-        <View style={styles.calcButton1}></View>
-        <View style={styles.calcButton2}></View>
+        <View style={styles.calcButton1}>
+        <Text style={styles.calcText}> 1 </Text>
         </View>
+        <View style={styles.calcButton2}>
+        <Text style={styles.calcText}> 2 </Text>
+        </View>
+        <View style={styles.calcButton1}>
+        <Text style={styles.calcText}> 3 </Text>
+        </View>
+        <View style={styles.calcButton2}>
+        <Text style={styles.calcText}> + </Text>
+        </View>
+        </View>
+        {/* Row 5 */}
         <View style={styles.calcRow1}>
-        <View style={styles.calcButton1}></View>
-        <View style={styles.calcButton2}></View>
-        <View style={styles.calcButton1}></View>
-        <View style={styles.calcButton2}></View>
+        <View style={styles.calcButton3}>
+        <Text style={styles.calcText}> 0 </Text>
+        </View>
+        <View style={styles.calcButton1}>
+        <Text style={styles.calcText}> . </Text>
+        </View>
+        <View style={styles.calcButton2}>
+        <Text style={styles.calcText}> = </Text>
+        </View>
         </View>
 
       </View>
@@ -169,7 +211,7 @@ const styles = StyleSheet.create({
   },
   ioDisplay: {
     flex: 1,
-    backgroundColor: 'blue'
+    backgroundColor: 'purple'
   },
   calcButtonContainer: {
     flex: 5,
@@ -188,14 +230,32 @@ const styles = StyleSheet.create({
   calcButton1: {
     flex: 1,
     backgroundColor: 'green',
-    height: 100,
-    width: 100
+    borderRadius: 5,
+    borderWidth: 2.5,
+    borderColor: 'black',
+    justifyContent: 'center'
   },
   calcButton2: {
     flex: 1,
     backgroundColor: 'orange',
-    height: 100,
-    width: 100
+    borderRadius: 5,
+    borderWidth: 2.5,
+    borderColor: 'black',
+    justifyContent: 'center'
   },
+  calcButton3: {
+    flex: 2,
+    backgroundColor: 'lightblue',
+    borderRadius: 5,
+    borderWidth: 2.5,
+    borderColor: 'black',
+    justifyContent: 'center'
+  },
+  calcText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    textAlignVertical: 'center'
+  }
 
 });
