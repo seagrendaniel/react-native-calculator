@@ -95,6 +95,28 @@ export default class LotsOfGreetings extends Component {
   }
 }
 
+// --- Calculator Layout --- //
+
+class Calculator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentValue: 0,
+    }
+  }
+  render() {
+    return(
+      <View>
+        <View>
+          
+        </View>
+      </View>
+    )
+  }
+}
+
+
+
 const styles = StyleSheet.create({
   bigBlue: {
     right: 500,
