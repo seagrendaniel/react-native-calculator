@@ -9,7 +9,7 @@ class EqButton extends Component {
         <Button
           style={styles.calcText}
           onPress={() => {
-            alert('You pressed the Equals button');
+            alert('You pressed the Equal button');
           }}
           title='='
           titleStyle={{
