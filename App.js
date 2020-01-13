@@ -106,12 +106,43 @@ export default class Calculator extends Component {
   render() {
     return(
       <View style={{flex: 1}}>
+
         <View style={styles.ioDisplay}>
-
         </View>
-        <View>
 
+        <View style={styles.calcButtonContainer}>
+        <View style={styles.calcRow1}>
+        <View style={styles.calcButton1}></View>
+        <View style={styles.calcButton2}></View>
+        <View style={styles.calcButton1}></View>
+        <View style={styles.calcButton2}></View>
         </View>
+        <View style={styles.calcRow2}>
+        <View style={styles.calcButton1}></View>
+        <View style={styles.calcButton2}></View>
+        <View style={styles.calcButton1}></View>
+        <View style={styles.calcButton2}></View>
+        </View>
+        <View style={styles.calcRow1}>
+        <View style={styles.calcButton1}></View>
+        <View style={styles.calcButton2}></View>
+        <View style={styles.calcButton1}></View>
+        <View style={styles.calcButton2}></View>
+        </View>
+        <View style={styles.calcRow2}>
+        <View style={styles.calcButton1}></View>
+        <View style={styles.calcButton2}></View>
+        <View style={styles.calcButton1}></View>
+        <View style={styles.calcButton2}></View>
+        </View>
+        <View style={styles.calcRow1}>
+        <View style={styles.calcButton1}></View>
+        <View style={styles.calcButton2}></View>
+        <View style={styles.calcButton1}></View>
+        <View style={styles.calcButton2}></View>
+        </View>
+
+      </View>
       </View>
     )
   }
@@ -142,6 +173,29 @@ const styles = StyleSheet.create({
   },
   calcButtonContainer: {
     flex: 5,
-    backgroundColor: 'red'
-  }
+    // backgroundColor: 'red',
+  },
+  calcRow1: {
+    flex: 1,
+    color: 'lightblue',
+    flexDirection: 'row'
+  },
+  calcRow2: {
+    flex: 1,
+    color: 'purple',
+    flexDirection: 'row'
+  },
+  calcButton1: {
+    flex: 1,
+    backgroundColor: 'green',
+    height: 100,
+    width: 100
+  },
+  calcButton2: {
+    flex: 1,
+    backgroundColor: 'orange',
+    height: 100,
+    width: 100
+  },
+
 });
