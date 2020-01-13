@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput} from 'react-native';
+import {Button} from 'react-native-elements';
 
 class SubButton extends Component {
   render() {
@@ -11,6 +12,12 @@ class SubButton extends Component {
             alert('You pressed the Sub button');
           }}
           title='-'
+          titleStyle={{
+            color: 'black',
+            fontSize: 40,
+            fontWeight: 'bold'
+          }}
+          type='clear'
         >
         </Button>
       </View>
@@ -23,7 +30,8 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold',
     textAlign: 'center',
-    textAlignVertical: 'center'
+    textAlignVertical: 'center',
+    color: 'black'
   }
 })
 
