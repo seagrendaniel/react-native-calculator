@@ -21,10 +21,16 @@ export default class Calculator extends Component {
       operatorValue: null,
       storedValue: 0
     }
+    // this.onNumberButtonPress.bind(this)
+  }
+  onNumberButtonPress = () => {
+    this.setState({
+      currentValue: value
+    })
   }
   render() {
-    return(
-      <View style={{flex: 1}}>
+    return (
+      <View style={{ flex: 1 }}>
 
         <View style={styles.ioDisplay}>
           <Text style={styles.ioText}>{this.state.currentValue}</Text>
@@ -32,99 +38,101 @@ export default class Calculator extends Component {
 
         <View style={styles.calcButtonContainer}>
           {/* Row 1 */}
-        <View style={styles.calcRow1}>
-        <View style={styles.calcButton1}>
-          <ClearButton />
-        </View>
-        <View style={styles.calcButton2}>
-          <PolarButton />
-        </View>
-        <View style={styles.calcButton1}>
-          <PercentButton />
-        </View>
-        <View style={styles.calcButton2}>
-          <DivButton />
-        </View>
-        </View>
-        {/* Row 2 */}
-        <View style={styles.calcRow2}>
-        <View style={styles.calcButton1}>
-          <NumberButton
-            value='7'
-          />
-        </View>
-        <View style={styles.calcButton2}>
-          <NumberButton
-            value='8'
-          />
-        </View>
-        <View style={styles.calcButton1}>
-          <NumberButton
-            value='9'
-          />
-        </View>
-        <View style={styles.calcButton2}>
-          <MultButton />
-        </View>
-        </View>
-        {/* Row 3 */}
-        <View style={styles.calcRow1}>
-        <View style={styles.calcButton1}>
-          <NumberButton
-            value='4'
-          />
-        </View>
-        <View style={styles.calcButton2}>
-        <NumberButton
-            value='5'
-          />
-        </View>
-        <View style={styles.calcButton1}>
-        <NumberButton
-            value='6'
-          />
-        </View>
-        <View style={styles.calcButton2}>
-        <SubButton />
-        </View>
-        </View>
-        {/* Row 4 */}
-        <View style={styles.calcRow2}>
-        <View style={styles.calcButton1}>
-        <NumberButton
-            value='1'
-          />
-        </View>
-        <View style={styles.calcButton2}>
-        <NumberButton
-            value='2'
-          />
-        </View>
-        <View style={styles.calcButton1}>
-        <NumberButton
-            value='3'
-          />
-        </View>
-        <View style={styles.calcButton2}>
-        <AddButton />
-        </View>
-        </View>
-        {/* Row 5 */}
-        <View style={styles.calcRow1}>
-        <View style={styles.calcButton3}>
-        <NumberButton
-            value='0'
-          />
-        </View>
-        <View style={styles.calcButton1}>
-        <Text style={styles.calcText}> . </Text>
-        </View>
-        <View style={styles.calcButton2}>
-        <EqButton />
-        </View>
-        </View>
+          <View style={styles.calcRow1}>
+            <View style={styles.calcButton1}>
+              <ClearButton />
+            </View>
+            <View style={styles.calcButton2}>
+              <PolarButton />
+            </View>
+            <View style={styles.calcButton1}>
+              <PercentButton />
+            </View>
+            <View style={styles.calcButton2}>
+              <DivButton />
+            </View>
+          </View>
+          {/* Row 2 */}
+          <View style={styles.calcRow2}>
+            <View style={styles.calcButton1}>
+              <NumberButton
+                value='7'
+                currentValue={this.state.currentValue}
+                onNumberButtonPress={this.onNumberButtonPress}
+              />
+            </View>
+            <View style={styles.calcButton2}>
+              <NumberButton
+                value='8'
+              />
+            </View>
+            <View style={styles.calcButton1}>
+              <NumberButton
+                value='9'
+              />
+            </View>
+            <View style={styles.calcButton2}>
+              <MultButton />
+            </View>
+          </View>
+          {/* Row 3 */}
+          <View style={styles.calcRow1}>
+            <View style={styles.calcButton1}>
+              <NumberButton
+                value='4'
+              />
+            </View>
+            <View style={styles.calcButton2}>
+              <NumberButton
+                value='5'
+              />
+            </View>
+            <View style={styles.calcButton1}>
+              <NumberButton
+                value='6'
+              />
+            </View>
+            <View style={styles.calcButton2}>
+              <SubButton />
+            </View>
+          </View>
+          {/* Row 4 */}
+          <View style={styles.calcRow2}>
+            <View style={styles.calcButton1}>
+              <NumberButton
+                value='1'
+              />
+            </View>
+            <View style={styles.calcButton2}>
+              <NumberButton
+                value='2'
+              />
+            </View>
+            <View style={styles.calcButton1}>
+              <NumberButton
+                value='3'
+              />
+            </View>
+            <View style={styles.calcButton2}>
+              <AddButton />
+            </View>
+          </View>
+          {/* Row 5 */}
+          <View style={styles.calcRow1}>
+            <View style={styles.calcButton3}>
+              <NumberButton
+                value='0'
+              />
+            </View>
+            <View style={styles.calcButton1}>
+              <Text style={styles.calcText}> . </Text>
+            </View>
+            <View style={styles.calcButton2}>
+              <EqButton />
+            </View>
+          </View>
 
-      </View>
+        </View>
       </View>
     )
   }
@@ -233,7 +241,7 @@ const styles = StyleSheet.create({
 //           <Text style={{top: 75, textAlign: 'center'}}> Hello my name is {this.props.name}</Text>
 //         </View>
 //       );
-    
+
 //   }
 // }
 
