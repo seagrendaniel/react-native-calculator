@@ -49,14 +49,19 @@ export default class Calculator extends Component {
         {/* Row 2 */}
         <View style={styles.calcRow2}>
         <View style={styles.calcButton1}>
-          <Text style={styles.calcText}> 7 </Text>
-          <NumberButton/>
+          <NumberButton
+            value='7'
+          />
         </View>
         <View style={styles.calcButton2}>
-          <Text style={styles.calcText}> 8 </Text>
+          <NumberButton
+            value='8'
+          />
         </View>
         <View style={styles.calcButton1}>
-          <Text style={styles.calcText}> 9 </Text>
+          <NumberButton
+            value='9'
+          />
         </View>
         <View style={styles.calcButton2}>
           <MultButton />
@@ -65,13 +70,19 @@ export default class Calculator extends Component {
         {/* Row 3 */}
         <View style={styles.calcRow1}>
         <View style={styles.calcButton1}>
-          <Text style={styles.calcText}> 4 </Text>
+          <NumberButton
+            value='4'
+          />
         </View>
         <View style={styles.calcButton2}>
-        <Text style={styles.calcText}> 5 </Text>
+        <NumberButton
+            value='5'
+          />
         </View>
         <View style={styles.calcButton1}>
-        <Text style={styles.calcText}> 6 </Text>
+        <NumberButton
+            value='6'
+          />
         </View>
         <View style={styles.calcButton2}>
         <SubButton />
@@ -80,13 +91,19 @@ export default class Calculator extends Component {
         {/* Row 4 */}
         <View style={styles.calcRow2}>
         <View style={styles.calcButton1}>
-        <Text style={styles.calcText}> 1 </Text>
+        <NumberButton
+            value='1'
+          />
         </View>
         <View style={styles.calcButton2}>
-        <Text style={styles.calcText}> 2 </Text>
+        <NumberButton
+            value='2'
+          />
         </View>
         <View style={styles.calcButton1}>
-        <Text style={styles.calcText}> 3 </Text>
+        <NumberButton
+            value='3'
+          />
         </View>
         <View style={styles.calcButton2}>
         <AddButton />
@@ -95,7 +112,9 @@ export default class Calculator extends Component {
         {/* Row 5 */}
         <View style={styles.calcRow1}>
         <View style={styles.calcButton3}>
-        <Text style={styles.calcText}> 0 </Text>
+        <NumberButton
+            value='0'
+          />
         </View>
         <View style={styles.calcButton1}>
         <Text style={styles.calcText}> . </Text>

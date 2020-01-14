@@ -9,9 +9,9 @@ class NumberButton extends Component {
         <Button
           style={styles.calcText}
           onPress={() => {
-            alert(`You pressed ${this.title} button`);
+            alert(`You pressed the ${this.props.value} button`);
           }}
-          title='1'
+          title={this.props.value}
           titleStyle={{
             color: 'black',
             fontSize: 40,
