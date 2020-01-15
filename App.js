@@ -14,13 +14,13 @@ import DecButton from './Components/CalcButtons/DecButton/DecButton';
 
 // --- Constant Definitions --- //
 
-const operatorArr = ['+', '-', '/', '*' ]
+const operatorArr = ['+', '-', '/', '*']
 const mathOperators = {
-  'add': function(x,y) {return (x + y)},
-  'sub': function(x,y) {return (x - y)},
-  'mult': function(x,y) {return (x * y)},
-  'div': function(x,y) {return (x / y)}
- }
+  '+': function (x, y) { return (x + y) },
+  '-': function (x, y) { return (x - y) },
+  '*': function (x, y) { return (x * y) },
+  '/': function (x, y) { return (x / y) }
+}
 
 // --- Calculator Layout --- //
 
@@ -36,36 +36,33 @@ export default class Calculator extends Component {
     this.onNumberButtonPress.bind(this)
   }
 
-  onNumberButtonPress = value =>{
+  onNumberButtonPress = value => {
     this.setState({
       currentValue: value
     });
   }
 
   checkBtnPress = keyPress => {
-    if(!isNaN(parseFloat(keyPress)) || keyPress === '.') {
-      this.setState({currentValue: (this.state.currentValue + keyPress)});
-    } else if(keyPress === '+' || keyPress === '-' || keyPress === '*' || keyPress === '/') {
-        storedValue = parseFloat(currentValue);
-        if(keyPress === '+') {
-          operatorValue = mathOperators[add];
-        }
-        else if(keyPress === '-') {
-          operatorValue = mathOperators[sub];
-        }
-        else if(keyPress === '*') {
-          operatorValue = mathOperators[mult];
-        }
-        else if(keyPress === '/') {
-          operatorValue = mathOperators[div];
-        }
-        else if(keyPress === '=') {
-          // Solve function TO BE WRITTEN
-        }
-        else if (keyPress === 'A/C') {
-          this.setState({currentValue: ''})
-        }
-    } return;
+    if (!isNaN(parseFloat(keyPress)) || keyPress === '.') {
+      this.setState({ currentValue: (this.state.currentValue + keyPress) });
+    } else if (keyPress in mathOperators) {
+      storedValue = parseFloat(currentValue);
+      operatorValue = mathOperators[keyPress];
+    } else if (keyPress === '=') {
+      // Solve function TO BE WRITTEN
+
+    } else if (keyPress === ('+/-')) {
+      if(this.state.currentValue[0] === '-') {
+        this.setState({currentValue: this.state.currentValue.slice(1)});
+      } else{
+        this.setState({currentValue: ('-' + this.state.currentValue)})
+      }
+    }
+
+    else if (keyPress === 'A/C') {
+      this.setState({ currentValue: '' })
+    }
+    return;
   }
 
   render() {
@@ -80,23 +77,27 @@ export default class Calculator extends Component {
           {/* Row 1 */}
           <View style={styles.calcRow1}>
             <View style={styles.calcButton1}>
-              <ClearButton 
-              value='A/C'
-              currentValue={this.state.currentValue}
-              checkBtnPress={this.checkBtnPress}
+              <ClearButton
+                value='A/C'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton2}>
-              <PolarButton />
+              <PolarButton 
+              value='+/-'
+              currentValue={this.state.currentValue}
+              checkBtnPress={this.checkBtnPress}
+              />
             </View>
             <View style={styles.calcButton1}>
               <PercentButton />
             </View>
             <View style={styles.calcButton2}>
-              <DivButton 
-              value='/'
-              currentValue={this.state.currentValue}
-              checkBtnPress={this.checkBtnPress}
+              <DivButton
+                value='/'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
           </View>
@@ -124,7 +125,7 @@ export default class Calculator extends Component {
               />
             </View>
             <View style={styles.calcButton2}>
-              <MultButton 
+              <MultButton
                 value='*'
                 currentValue={this.state.currentValue}
                 checkBtnPress={this.checkBtnPress}
@@ -155,10 +156,10 @@ export default class Calculator extends Component {
               />
             </View>
             <View style={styles.calcButton2}>
-              <SubButton 
-              value='-'
-              currentValue={this.state.currentValue}
-              checkBtnPress={this.checkBtnPress}
+              <SubButton
+                value='-'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
           </View>
@@ -186,10 +187,10 @@ export default class Calculator extends Component {
               />
             </View>
             <View style={styles.calcButton2}>
-              <AddButton 
-              value='+'
-              currentValue={this.state.currentValue}
-              checkBtnPress={this.checkBtnPress}
+              <AddButton
+                value='+'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
           </View>
@@ -203,14 +204,14 @@ export default class Calculator extends Component {
               />
             </View>
             <View style={styles.calcButton1}>
-              <DecButton 
+              <DecButton
                 value='.'
                 currentValue={this.state.currentValue}
                 checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton2}>
-              <EqButton 
+              <EqButton
                 value='='
                 currentValue={this.state.currentValue}
                 checkBtnPress={this.checkBtnPress}
