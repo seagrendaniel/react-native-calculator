@@ -35,15 +35,16 @@ export default class Calculator extends Component {
     }
     this.onNumberButtonPress.bind(this)
   }
+
   onNumberButtonPress = value =>{
     this.setState({
       currentValue: value
     });
   }
 
-  checkBtnPress(keyPress) {
+  checkBtnPress = keyPress => {
     if(!isNaN(parseFloat(keyPress)) || keyPress === '.') {
-      this.setState({currentValue: (this.state.currentValue += keyPress)});
+      this.setState({currentValue: (currentValue += keyPress)});
     } else if(keyPress === '+' || keyPress === '-' || keyPress === '*' || keyPress === '/') {
         storedValue = parseFloat(currentValue);
         if(keyPress === '+') {

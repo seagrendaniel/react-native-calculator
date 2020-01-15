@@ -8,7 +8,7 @@ class NumberButton extends Component {
       <View>
         <Button
           style={styles.calcText}
-          onPress={() => {this.props.onNumberButtonPress(this.props.value)}}
+          onPress={() => {this.props.checkBtnPress(this.props.value)}}
             // alert(`You pressed the ${this.props.value} button`)
           title={this.props.value}
           titleStyle={{
