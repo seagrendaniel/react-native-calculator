@@ -44,18 +44,16 @@ export default class Calculator extends Component {
 
   checkBtnPress = keyPress => {
     if (!isNaN(parseFloat(keyPress)) || keyPress === '.') {
-      if(this.state.storedValue) {
-        if(this.state.currentValue) {
-          this.setState({ currentValue: (this.state.currentValue + keyPress) });
-        } else {
-        this.setState({ currentValue: (keyPress) });
-        }
+      if(this.state.currentValue) {
+      this.setState({currentValue: this.state.currentValue + keyPress})
       } else {
-        this.setState({ currentValue: (this.state.currentValue + keyPress) });
+        this.setState({currentValue: keyPress})
       }
     } else if (keyPress in mathOperators) {
+      this.setState({currentValue: ''});
       this.setState({storedValue: parseFloat(this.state.currentValue)});
       this.setState({operatorValue: mathOperators[keyPress]});
+
     } else if (keyPress === '=') {
       // Solve function TO BE WRITTEN
       this.setState({currentValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue))})
