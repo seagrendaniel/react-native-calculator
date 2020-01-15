@@ -14,7 +14,6 @@ import DecButton from './Components/CalcButtons/DecButton/DecButton';
 
 // --- Constant Definitions --- //
 
-const operatorArr = ['+', '-', '/', '*']
 const mathOperators = {
   '+': function (x, y) { return (x + y) },
   '-': function (x, y) { return (x - y) },
@@ -33,14 +32,8 @@ export default class Calculator extends Component {
       storedValue: 0,
       finalValue: 0
     }
-    this.onNumberButtonPress.bind(this)
   }
 
-  onNumberButtonPress = value => {
-    this.setState({
-      currentValue: value
-    });
-  }
 
   checkBtnPress = keyPress => {
     if (!isNaN(parseFloat(keyPress)) || keyPress === '.') {
@@ -55,7 +48,6 @@ export default class Calculator extends Component {
       this.setState({operatorValue: mathOperators[keyPress]});
 
     } else if (keyPress === '=') {
-      // Solve function TO BE WRITTEN
       this.setState({currentValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue))})
     } else if (keyPress === ('+/-')) {
       if(this.state.currentValue[0] === '-') {
@@ -291,5 +283,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center'
   }
-
 });
