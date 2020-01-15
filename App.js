@@ -11,23 +11,48 @@ import PolarButton from '../react-native-calculator/Components/CalcButtons/Polar
 import SubButton from '../react-native-calculator/Components/CalcButtons/SubButton/SubButton';
 
 
+// --- Constants Definitions --- //
+
+const operatorArr = ['+', '-', '/', '*' ]
+const mathOperators = {
+  '+': function(x,y) {return (x + y)},
+  '-': function(x,y) {return (x - y)},
+  '*': function(x,y) {return (x * y)},
+  '/': function(x,y) {return (x / y)}
+ }
+
 // --- Calculator Layout --- //
 
 export default class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentValue: 0,
+      currentValue: '0',
       operatorValue: null,
       storedValue: 0
     }
     // this.onNumberButtonPress.bind(this)
   }
-  onNumberButtonPress = () => {
+  onNumberButtonPress (value) {
     this.setState({
       currentValue: value
-    })
+    });
   }
+
+  checkBtnPress (keyPress) {
+    if(!isNaN(parseFloat(keyPress))) {
+      currentValue += (currentValue + keyPress)
+    } else if(keyPress === '+' || keyPress === '-' || keyPress === '*' || keyPress === '/') {
+        storedValue = parseFloat(currentValue);
+
+    }
+
+    }
+    {
+
+    }
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
