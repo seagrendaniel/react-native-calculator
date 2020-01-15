@@ -12,7 +12,7 @@ import SubButton from '../react-native-calculator/Components/CalcButtons/SubButt
 import DecButton from './Components/CalcButtons/DecButton/DecButton';
 
 
-// --- Constants Definitions --- //
+// --- Constant Definitions --- //
 
 const operatorArr = ['+', '-', '/', '*' ]
 const mathOperators = {
@@ -28,7 +28,7 @@ export default class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentValue: '0',
+      currentValue: '',
       operatorValue: null,
       storedValue: 0,
       finalValue: 0
@@ -44,7 +44,7 @@ export default class Calculator extends Component {
 
   checkBtnPress = keyPress => {
     if(!isNaN(parseFloat(keyPress)) || keyPress === '.') {
-      this.setState({currentValue: (currentValue += keyPress)});
+      this.setState({currentValue: (this.state.currentValue + keyPress)});
     } else if(keyPress === '+' || keyPress === '-' || keyPress === '*' || keyPress === '/') {
         storedValue = parseFloat(currentValue);
         if(keyPress === '+') {
@@ -62,6 +62,9 @@ export default class Calculator extends Component {
         else if(keyPress === '=') {
           // Solve function TO BE WRITTEN
         }
+        else if (keyPress === 'A/C') {
+          this.setState({currentValue: ''})
+        }
     } return;
   }
 
@@ -70,14 +73,18 @@ export default class Calculator extends Component {
       <View style={{ flex: 1 }}>
 
         <View style={styles.ioDisplay}>
-          <Text style={styles.ioText}>{this.state.currentValue}</Text>
+          <Text style={styles.ioText}>{this.state.currentValue || 0}</Text>
         </View>
 
         <View style={styles.calcButtonContainer}>
           {/* Row 1 */}
           <View style={styles.calcRow1}>
             <View style={styles.calcButton1}>
-              <ClearButton />
+              <ClearButton 
+              value='A/C'
+              currentValue={this.state.currentValue}
+              checkBtnPress={this.checkBtnPress}
+              />
             </View>
             <View style={styles.calcButton2}>
               <PolarButton />

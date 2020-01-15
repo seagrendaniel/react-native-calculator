@@ -8,9 +8,7 @@ class ClearButton extends Component {
       <View>
         <Button
           style={styles.calcText}
-          onPress={() => {
-            alert('You pressed the Clear button');
-          }}
+          onPress={() => {this.props.checkBtnPress(this.props.value)}}
           title='A/C'
           titleStyle={{
             color: 'black',
