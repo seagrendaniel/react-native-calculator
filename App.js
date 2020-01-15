@@ -44,14 +44,21 @@ export default class Calculator extends Component {
 
   checkBtnPress = keyPress => {
     if (!isNaN(parseFloat(keyPress)) || keyPress === '.') {
-      this.setState({ currentValue: (this.state.currentValue + keyPress) });
+      if(this.state.storedValue) {
+        if(this.state.currentValue) {
+          this.setState({ currentValue: (this.state.currentValue + keyPress) });
+        } else {
+        this.setState({ currentValue: (keyPress) });
+        }
+      } else {
+        this.setState({ currentValue: (this.state.currentValue + keyPress) });
+      }
     } else if (keyPress in mathOperators) {
-      this.state.storedValue = parseFloat(this.state.currentValue);
-      this.state.operatorValue = mathOperators[keyPress];
-      this.state.currentValue = '';
+      this.setState({storedValue: parseFloat(this.state.currentValue)});
+      this.setState({operatorValue: mathOperators[keyPress]});
     } else if (keyPress === '=') {
       // Solve function TO BE WRITTEN
-      this.setState({currentValue: this.state.operatorValue(this.state.storedValue, this.state.currentValue)})
+      this.setState({currentValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue))})
     } else if (keyPress === ('+/-')) {
       if(this.state.currentValue[0] === '-') {
         this.setState({currentValue: this.state.currentValue.slice(1)});
@@ -62,6 +69,7 @@ export default class Calculator extends Component {
 
     else if (keyPress === 'A/C') {
       this.setState({ currentValue: '' })
+      this.setState({storedValue: 0})
     }
     return;
   }
@@ -71,7 +79,7 @@ export default class Calculator extends Component {
       <View style={{ flex: 1 }}>
 
         <View style={styles.ioDisplay}>
-          <Text style={styles.ioText}>{this.state.currentValue || 0}</Text>
+          <Text style={styles.ioText}>{this.state.currentValue || 0 || this.state.storedValue}</Text>
         </View>
 
         <View style={styles.calcButtonContainer}>
