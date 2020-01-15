@@ -33,9 +33,9 @@ export default class Calculator extends Component {
       storedValue: 0,
       finalValue: 0
     }
-    // this.onNumberButtonPress.bind(this)
+    this.onNumberButtonPress.bind(this)
   }
-  onNumberButtonPress = (value) => {
+  onNumberButtonPress = value =>{
     this.setState({
       currentValue: value
     });
@@ -85,7 +85,11 @@ export default class Calculator extends Component {
               <PercentButton />
             </View>
             <View style={styles.calcButton2}>
-              <DivButton />
+              <DivButton 
+              value='/'
+              currentValue={this.state.currentValue}
+              checkBtnPress={this.checkBtnPress}
+              />
             </View>
           </View>
           {/* Row 2 */}
@@ -94,22 +98,29 @@ export default class Calculator extends Component {
               <NumberButton
                 value='7'
                 currentValue={this.state.currentValue}
-                onNumberButtonPress={this.onNumberButtonPress}
-                // checkBtnPress={this.checkBtnPress}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton2}>
               <NumberButton
                 value='8'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton1}>
               <NumberButton
                 value='9'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton2}>
-              <MultButton />
+              <MultButton 
+                value='*'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
+              />
             </View>
           </View>
           {/* Row 3 */}
@@ -117,20 +128,30 @@ export default class Calculator extends Component {
             <View style={styles.calcButton1}>
               <NumberButton
                 value='4'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton2}>
               <NumberButton
                 value='5'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton1}>
               <NumberButton
                 value='6'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton2}>
-              <SubButton />
+              <SubButton 
+              value='-'
+              currentValue={this.state.currentValue}
+              checkBtnPress={this.checkBtnPress}
+              />
             </View>
           </View>
           {/* Row 4 */}
@@ -138,20 +159,30 @@ export default class Calculator extends Component {
             <View style={styles.calcButton1}>
               <NumberButton
                 value='1'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton2}>
               <NumberButton
                 value='2'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton1}>
               <NumberButton
                 value='3'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton2}>
-              <AddButton />
+              <AddButton 
+              value='+'
+              currentValue={this.state.currentValue}
+              checkBtnPress={this.checkBtnPress}
+              />
             </View>
           </View>
           {/* Row 5 */}
@@ -159,15 +190,23 @@ export default class Calculator extends Component {
             <View style={styles.calcButton3}>
               <NumberButton
                 value='0'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton1}>
               <DecButton 
                 value='.'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton2}>
-              <EqButton />
+              <EqButton 
+                value='='
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
+              />
             </View>
           </View>
 
