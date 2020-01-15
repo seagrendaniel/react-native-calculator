@@ -9,16 +9,17 @@ import NumberButton from '../react-native-calculator/Components/CalcButtons/Numb
 import PercentButton from '../react-native-calculator/Components/CalcButtons/PercentButton/PercentButton';
 import PolarButton from '../react-native-calculator/Components/CalcButtons/PolarButton/PolarButton';
 import SubButton from '../react-native-calculator/Components/CalcButtons/SubButton/SubButton';
+import DecButton from './Components/CalcButtons/DecButton/DecButton';
 
 
 // --- Constants Definitions --- //
 
 const operatorArr = ['+', '-', '/', '*' ]
 const mathOperators = {
-  '+': function(x,y) {return (x + y)},
-  '-': function(x,y) {return (x - y)},
-  '*': function(x,y) {return (x * y)},
-  '/': function(x,y) {return (x / y)}
+  'add': function(x,y) {return (x + y)},
+  'sub': function(x,y) {return (x - y)},
+  'mult': function(x,y) {return (x * y)},
+  'div': function(x,y) {return (x / y)}
  }
 
 // --- Calculator Layout --- //
@@ -29,28 +30,38 @@ export default class Calculator extends Component {
     this.state = {
       currentValue: '0',
       operatorValue: null,
-      storedValue: 0
+      storedValue: 0,
+      finalValue: 0
     }
     // this.onNumberButtonPress.bind(this)
   }
-  onNumberButtonPress (value) {
+  onNumberButtonPress = (value) => {
     this.setState({
       currentValue: value
     });
   }
 
-  checkBtnPress (keyPress) {
-    if(!isNaN(parseFloat(keyPress))) {
-      currentValue += (currentValue + keyPress)
+  checkBtnPress(keyPress) {
+    if(!isNaN(parseFloat(keyPress)) || keyPress === '.') {
+      this.setState({currentValue: (this.state.currentValue += keyPress)});
     } else if(keyPress === '+' || keyPress === '-' || keyPress === '*' || keyPress === '/') {
         storedValue = parseFloat(currentValue);
-
-    }
-
-    }
-    {
-
-    }
+        if(keyPress === '+') {
+          operatorValue = mathOperators[add];
+        }
+        else if(keyPress === '-') {
+          operatorValue = mathOperators[sub];
+        }
+        else if(keyPress === '*') {
+          operatorValue = mathOperators[mult];
+        }
+        else if(keyPress === '/') {
+          operatorValue = mathOperators[div];
+        }
+        else if(keyPress === '=') {
+          // Solve function TO BE WRITTEN
+        }
+    } return;
   }
 
   render() {
@@ -84,6 +95,7 @@ export default class Calculator extends Component {
                 value='7'
                 currentValue={this.state.currentValue}
                 onNumberButtonPress={this.onNumberButtonPress}
+                // checkBtnPress={this.checkBtnPress}
               />
             </View>
             <View style={styles.calcButton2}>
@@ -150,7 +162,9 @@ export default class Calculator extends Component {
               />
             </View>
             <View style={styles.calcButton1}>
-              <Text style={styles.calcText}> . </Text>
+              <DecButton 
+                value='.'
+              />
             </View>
             <View style={styles.calcButton2}>
               <EqButton />
