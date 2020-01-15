@@ -9,7 +9,7 @@ class SubButton extends Component {
         <Button
           style={styles.calcText}
           onPress={() => {
-            alert('You pressed the Sub button');
+            this.props.checkBtnPress(this.props.value);
           }}
           title='-'
           titleStyle={{

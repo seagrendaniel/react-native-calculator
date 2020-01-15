@@ -9,7 +9,7 @@ class DivButton extends Component {
         <Button
           style={styles.calcText}
           onPress={() => {
-            alert('You pressed the Div button');
+            this.props.checkBtnPress(this.props.value);
           }}
           title='÷'
           titleStyle={{

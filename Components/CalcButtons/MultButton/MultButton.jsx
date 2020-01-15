@@ -9,7 +9,7 @@ class MultButton extends Component {
         <Button
           style={styles.calcText}
           onPress={() => {
-            alert('You pressed the Mult button');
+            this.props.checkBtnPress(this.props.value);
           }}
           title='x'
           titleStyle={{

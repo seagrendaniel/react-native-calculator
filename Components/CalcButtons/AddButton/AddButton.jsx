@@ -9,7 +9,7 @@ class AddButton extends Component {
         <Button
           style={styles.calcText}
           onPress={() => {
-            alert('You pressed the Add button');
+            this.props.checkBtnPress(this.props.value);
           }}
           title='+'
           titleStyle={{

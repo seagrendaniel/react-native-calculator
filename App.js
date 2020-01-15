@@ -46,11 +46,12 @@ export default class Calculator extends Component {
     if (!isNaN(parseFloat(keyPress)) || keyPress === '.') {
       this.setState({ currentValue: (this.state.currentValue + keyPress) });
     } else if (keyPress in mathOperators) {
-      storedValue = parseFloat(currentValue);
-      operatorValue = mathOperators[keyPress];
+      this.state.storedValue = parseFloat(this.state.currentValue);
+      this.state.operatorValue = mathOperators[keyPress];
+      this.state.currentValue = '';
     } else if (keyPress === '=') {
       // Solve function TO BE WRITTEN
-
+      this.setState({currentValue: this.state.operatorValue(this.state.storedValue, this.state.currentValue)})
     } else if (keyPress === ('+/-')) {
       if(this.state.currentValue[0] === '-') {
         this.setState({currentValue: this.state.currentValue.slice(1)});
