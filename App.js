@@ -29,8 +29,7 @@ export default class Calculator extends Component {
     this.state = {
       currentValue: '',
       operatorValue: null,
-      storedValue: 0,
-      finalValue: 0
+      storedValue: 0
     }
   }
 
@@ -43,9 +42,9 @@ export default class Calculator extends Component {
         this.setState({currentValue: keyPress})
       }
     } else if (keyPress in mathOperators) {
-      this.setState({currentValue: ''});
       this.setState({storedValue: parseFloat(this.state.currentValue)});
       this.setState({operatorValue: mathOperators[keyPress]});
+      this.setState({currentValue: ''});
 
     } else if (keyPress === '=') {
       this.setState({currentValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue))})
