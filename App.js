@@ -42,12 +42,20 @@ export default class Calculator extends Component {
         this.setState({currentValue: keyPress})
       }
     } else if (keyPress in mathOperators) {
-      this.setState({storedValue: parseFloat(this.state.currentValue)});
-      this.setState({operatorValue: mathOperators[keyPress]});
-      this.setState({currentValue: ''});
+
+      this.setState({
+        currentValue: '',
+        storedValue: parseFloat(this.state.currentValue),
+        operatorValue: mathOperators[keyPress]
+      })
 
     } else if (keyPress === '=') {
-      this.setState({currentValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue))})
+      this.setState({
+        currentValue: '',
+        storedValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue))
+      })
+      // this.setState({currentValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue))})
+      // this.setState({storedValue: 0})
     } else if (keyPress === ('+/-')) {
       if(this.state.currentValue[0] === '-') {
         this.setState({currentValue: this.state.currentValue.slice(1)});
@@ -68,7 +76,7 @@ export default class Calculator extends Component {
       <View style={{ flex: 1 }}>
 
         <View style={styles.ioDisplay}>
-          <Text style={styles.ioText}>{this.state.currentValue || 0 || this.state.storedValue}</Text>
+          <Text style={styles.ioText}>{this.state.currentValue || this.state.storedValue || 0}</Text>
         </View>
 
         <View style={styles.calcButtonContainer}>
