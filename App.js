@@ -37,11 +37,18 @@ export default class Calculator extends Component {
   checkBtnPress = keyPress => {
     if (this.state.storedValue) {
       if (!isNaN(parseFloat(keyPress)) || keyPress === '.') {
+        let cV;
+        if (this.state.currentValue) {
           this.setState({
             currentValue: this.state.currentValue + keyPress,
-            storedValue: parseFloat(this.state.storedValue)
           })
-        } else if (keyPress in mathOperators) {
+        } else {
+          this.setState({
+            currentValue: keyPress,
+          });
+          this.state.storedValue += keyPress;
+        }
+      }  else if (keyPress in mathOperators) {
 
           this.setState({
             currentValue: '',
@@ -74,6 +81,7 @@ export default class Calculator extends Component {
         return;
       } else {                                                  // if there is not a stored value (or sV === 0)
         if (!isNaN(parseFloat(keyPress)) || keyPress === '.') {
+          let cV;
           if (this.state.currentValue) {
             this.setState({
               currentValue: this.state.currentValue + keyPress,
@@ -82,8 +90,9 @@ export default class Calculator extends Component {
             this.setState({
               currentValue: keyPress,
             });
+            cV = keyPress;
           }
-          this.setState({storedValue: this.state.currentValue})
+          this.setState({storedValue: cV})
         } 
           else if (keyPress in mathOperators) {
   
@@ -98,8 +107,6 @@ export default class Calculator extends Component {
               currentValue: null,
               storedValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue))
             })
-            // this.setState({currentValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue))})
-            // this.setState({storedValue: 0})
           } else if (keyPress === ('+/-')) {
             if (this.state.currentValue[0] === '-') {
               this.setState({ currentValue: this.state.currentValue.slice(1) });
@@ -121,7 +128,7 @@ export default class Calculator extends Component {
           <View style={{ flex: 1 }}>
 
             <View style={styles.ioDisplay}>
-        <Text style={styles.ioText}>cV: {this.state.currentValue || this.state.storedValue || 0}({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue})</Text>
+        <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue || 0}({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue})</Text>
             </View>
 
             <View style={styles.calcButtonContainer}>
