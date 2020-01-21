@@ -28,7 +28,7 @@ export default class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentValue: '',
+      currentValue: 0,
       operatorValue: null,
       storedValue: 0
     }
@@ -36,6 +36,8 @@ export default class Calculator extends Component {
 
   // button logic - to split later
   checkBtnPress = keyPress => {
+
+    // check for storedValue
     if (this.state.storedValue) {
       if ((!isNaN(parseFloat(keyPress)) || keyPress === '.') && !this.state.operatorValue[keyPress]) {
         if (this.state.currentValue) {
@@ -68,7 +70,7 @@ export default class Calculator extends Component {
 
       else if (keyPress === 'A/C') {
         this.setState({
-          currentValue: '',
+          currentValue: 0,
           storedValue: 0,
           operatorValue: null
         })
@@ -77,6 +79,7 @@ export default class Calculator extends Component {
     } else {                                                  // if there is not a stored value (or sV === 0)
       if (!isNaN(parseFloat(keyPress)) || keyPress === '.') {
         let cV;
+        keyPress = parseFloat(keyPress);
         if (this.state.currentValue) {
           this.setState({
             currentValue: this.state.currentValue + keyPress,
@@ -124,7 +127,7 @@ export default class Calculator extends Component {
       <View style={{ flex: 1 }}>
 
         <View style={styles.ioDisplay}>
-          <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue || 0}({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue}) & oV: {(typeof this.state.operatorValue) || 'adofjnas'}</Text>
+          <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue }({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue}) & oV: {(typeof this.state.operatorValue)}</Text>
         </View>
 
         <View style={styles.calcButtonContainer}>
