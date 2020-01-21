@@ -18,7 +18,8 @@ const mathOperators = {
   '+': function (x, y) { return (x + y) },
   '-': function (x, y) { return (x - y) },
   '*': function (x, y) { return (x * y) },
-  '/': function (x, y) { return (x / y) }
+  '/': function (x, y) { return (x / y) },
+  'abs': function(x) {return (abs(x))}
 }
 
 // --- Calculator Layout --- //
@@ -33,7 +34,7 @@ export default class Calculator extends Component {
     }
   }
 
-
+  // button logic - to split later
   checkBtnPress = keyPress => {
     if (this.state.storedValue) {
       if ((!isNaN(parseFloat(keyPress)) || keyPress === '.') && !this.state.operatorValue[keyPress]) {
@@ -117,7 +118,7 @@ export default class Calculator extends Component {
       return;
     }
   
-
+    // render function
   render() {
     return (
       <View style={{ flex: 1 }}>
