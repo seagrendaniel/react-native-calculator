@@ -35,13 +35,16 @@ export default class Calculator extends Component {
       eqPressed: false,
       mathOpPressed: false,
       decPressed: false,
-      keyPressArr: []
+      keyPressArr: [],
+      lastKeyPress: null
     }
   }
 
   //--- Button Logic ---//
   checkBtnPress = keyPress => {
-    let lastKeyPress = this.state.keyPressArr[this.state.keyPressArr.length - 1];
+    this.setState({
+      lastKeyPress: this.state.keyPressArr[this.state.keyPressArr.length - 1]
+    });
     // check for storedValue
     if (this.state.storedValue) {
 
@@ -101,7 +104,7 @@ export default class Calculator extends Component {
               decPressed: false
             });
           } else {
-            if(!(lastKeyPress in mathOperators)) {
+            if(!(this.state.lastKeyPress in mathOperators)) {
             this.setState({
               currentValue: '',
               storedValue: parseFloat(this.state.currentValue),
@@ -178,7 +181,6 @@ export default class Calculator extends Component {
     } else {                                                  // if there is not a stored value (or sV === 0)
       if (!isNaN(parseFloat(keyPress))) {
         let cV;
-        // keyPress = parseFloat(keyPress);
         if (this.state.currentValue) {
           this.setState({
             currentValue: this.state.currentValue + keyPress,
