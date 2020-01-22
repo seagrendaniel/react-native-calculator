@@ -33,56 +33,79 @@ export default class Calculator extends Component {
       storedValue: 0,
       afterEqValue: 0,
       eqPressed: false,
-      mathOpPressed: false
+      mathOpPressed: false,
+      decPressed: false
     }
   }
 
-  // button logic - to split later
+  //--- Button Logic ---//
   checkBtnPress = keyPress => {
 
     // check for storedValue
     if (this.state.storedValue) {
+
+      //--- Number Conditional ---//
       if (!isNaN(parseFloat(keyPress))) {
-        this.setState({
-          currentValue: parseFloat(this.state.currentValue + keyPress)
-        })
-      }
+        // if (parseFloat(keyPress) === 0) {
+        //   this.setState({
+        //     currentValue: this.state.currentValue,
+        //     storedValue: this.state.storedValue
+        //   });
+        // } else {
+          this.setState({
+            currentValue: parseFloat(this.state.currentValue + keyPress),
+            storedValue: parseFloat(this.state.storedValue + keyPress)
+          });
+        }
+      // }
+
+      //--- Decimal Conditional ---//
       else if (keyPress === '.') {
-        let cV = this.state.currentValue.toString() + keyPress;
-        this.setState({
-          currentValue: cV,
-          storedValue: cV
-        })
+        if (this.state.decPressed) {
+          return;
+        } else {
+          let cV = this.state.currentValue.toString() + keyPress;
+          this.setState({
+            currentValue: cV,
+            storedValue: cV,
+            decPressed: !this.state.decPressed
+          })
+        }
       }
-      else if(keyPress === '%'){
+
+      //--- Percent Conditional ---//
+      else if (keyPress === '%') {
         this.setState({
           currentValue: this.state.currentValue / 100,
           storedValue: this.state.storedValue / 100
         })
       }
+
+      //--- Math Operator Conditionals ---///
       else if (keyPress in mathOperators) {
-        if(this.state.mathOpPressed) {
-          // this.setState({mathOpPressed: !this.state.mathOpPressed})
+        if (this.state.mathOpPressed) {
           return;
         } else {
-        if(this.state.eqPressed) {
-          this.setState({
-            currentValue: 0,
-            operatorValue: mathOperators[keyPress]
-          });
-        } else {
-          this.setState({
-          currentValue: 0,
-          storedValue: this.state.currentValue,
-          operatorValue: mathOperators[keyPress]
-        });
+          if (this.state.eqPressed) {
+            this.setState({
+              currentValue: 0,
+              operatorValue: mathOperators[keyPress],
+              decPressed: false
+            });
+          } else {
+            this.setState({
+              currentValue: 0,
+              storedValue: this.state.currentValue,
+              operatorValue: mathOperators[keyPress],
+              decPressed: false
+            });
+          }
+          this.setState({ mathOpPressed: !this.state.mathOpPressed })
+        }
+
+
       }
-      this.setState({mathOpPressed: !this.state.mathOpPressed})
-    }
 
-
-      } 
-      
       else if (keyPress === '=') {
         if (this.state.eqPressed) {
           this.setState({
@@ -90,7 +113,8 @@ export default class Calculator extends Component {
             storedValue: this.state.operatorValue(this.state.afterEqValue, parseFloat(this.state.currentValue)),
             afterEqValue: this.state.operatorValue(this.state.afterEqValue, parseFloat(this.state.currentValue)),
             operatorValue: null,
-            mathOpPressed: false
+            mathOpPressed: false,
+            decPressed: false
 
           })
 
@@ -101,7 +125,8 @@ export default class Calculator extends Component {
             afterEqValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue)),
             operatorValue: null,
             eqPressed: !this.state.eqPressed,
-            mathOpPressed: false
+            mathOpPressed: false,
+            decPressed: false
           })
         }
       } else if (keyPress === ('+/-')) {
@@ -120,7 +145,8 @@ export default class Calculator extends Component {
           operatorValue: null,
           afterEqValue: 0,
           eqPressed: false,
-          mathOpPressed: false
+          mathOpPressed: false,
+          decPressed: false
         })
       }
       return;
@@ -159,7 +185,7 @@ export default class Calculator extends Component {
       <View style={{ flex: 1 }}>
 
         <View style={styles.ioDisplay}>
-          <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue }({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue})</Text>
+          <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue || 0}({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue})</Text>
         </View>
 
         <View style={styles.calcButtonContainer}>
@@ -180,7 +206,7 @@ export default class Calculator extends Component {
               />
             </View>
             <View style={styles.calcButton1}>
-              <PercentButton 
+              <PercentButton
                 value='%'
                 currentValue={this.state.currentValue}
                 checkBtnPress={this.checkBtnPress}
