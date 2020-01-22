@@ -9,7 +9,7 @@ class PercentButton extends Component {
         <Button
           style={styles.calcText}
           onPress={() => {
-            alert('You pressed the % button');
+            this.props.checkBtnPress(this.props.value)
           }}
           title='%'
           titleStyle={{

@@ -54,6 +54,12 @@ export default class Calculator extends Component {
           storedValue: cV
         })
       }
+      else if(keyPress === '%'){
+        this.setState({
+          currentValue: this.state.currentValue / 100,
+          storedValue: this.state.storedValue / 100
+        })
+      }
       else if (keyPress in mathOperators) {
         if(this.state.mathOpPressed) {
           // this.setState({mathOpPressed: !this.state.mathOpPressed})
@@ -174,7 +180,11 @@ export default class Calculator extends Component {
               />
             </View>
             <View style={styles.calcButton1}>
-              <PercentButton />
+              <PercentButton 
+                value='%'
+                currentValue={this.state.currentValue}
+                checkBtnPress={this.checkBtnPress}
+              />
             </View>
             <View style={styles.calcButton2}>
               <DivButton
