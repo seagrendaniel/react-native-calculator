@@ -66,9 +66,10 @@ export default class Calculator extends Component {
 
       } else if (keyPress === ('+/-')) {
         if (this.state.currentValue[0] === '-') {
-          this.setState({ currentValue: this.state.currentValue.slice(1) });
+          this.setState({ currentValue: parseFloat(this.state.currentValue.slice(1) )});
         } else {
-          this.setState({ currentValue: ('-' + this.state.currentValue) })
+          let cV = '-' + this.state.currentValue
+          this.setState({ currentValue: parseFloat(cV) })
         }
       }
 
