@@ -28,9 +28,9 @@ export default class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentValue: '0',
+      currentValue: '',
       operatorValue: null,
-      storedValue: '0',
+      storedValue: '',
       afterEqValue: 0,
       eqPressed: false,
       mathOpPressed: false,
@@ -46,24 +46,37 @@ export default class Calculator extends Component {
 
       //--- Number Conditional ---//
       if (!isNaN(parseFloat(keyPress))) {
-
+        if (this.state.mathOpPressed) {
+          this.setState({
+            currentValue: this.state.currentValue + keyPress,
+            mathOpPressed: !this.state.mathOpPressed
+          })
+        } else {
           this.setState({
             currentValue: this.state.currentValue + keyPress,
             storedValue: this.state.storedValue + keyPress
           });
         }
+      }
 
       //--- Decimal Conditional ---//
       else if (keyPress === '.') {
         if (this.state.decPressed) {
           return;
         } else {
-          let cV = this.state.currentValue.toString() + keyPress;
-          this.setState({
-            currentValue: cV,
-            storedValue: cV,
-            decPressed: !this.state.decPressed
-          })
+          let cV = this.state.currentValue + keyPress;
+          if (this.state.mathOpPressed) {
+            this.setState({
+              currentValue: cV,
+              decPressed: !this.state.decPressed
+            })
+          } else {
+            this.setState({
+              currentValue: cV,
+              storedValue: cV,
+              decPressed: !this.state.decPressed
+            })
+          }
         }
       }
 
@@ -134,8 +147,8 @@ export default class Calculator extends Component {
 
       else if (keyPress === 'A/C') {
         this.setState({
-          currentValue: 0,
-          storedValue: 0,
+          currentValue: '',
+          storedValue: '',
           operatorValue: null,
           afterEqValue: 0,
           eqPressed: false,
@@ -148,19 +161,18 @@ export default class Calculator extends Component {
     } else {                                                  // if there is not a stored value (or sV === 0)
       if (!isNaN(parseFloat(keyPress))) {
         let cV;
-        keyPress = parseFloat(keyPress);
-
+        // keyPress = parseFloat(keyPress);
         if (this.state.currentValue) {
           this.setState({
             currentValue: this.state.currentValue + keyPress,
           })
         } else {
           this.setState({
-            currentValue: 0 + keyPress,
+            currentValue: keyPress,
           });
         }
         cV = keyPress;
-        this.setState({ storedValue: parseFloat(cV) })
+        this.setState({ storedValue: cV })
       }
       else if (keyPress === 'A/C') {
         this.setState({
