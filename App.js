@@ -41,7 +41,6 @@ export default class Calculator extends Component {
 
   //--- Button Logic ---//
   checkBtnPress = keyPress => {
-
     let lastKeyPress = this.state.keyPressArr[this.state.keyPressArr.length - 1];
     // check for storedValue
     if (this.state.storedValue) {
@@ -171,7 +170,7 @@ export default class Calculator extends Component {
         })
       }
       this.setState({
-        keyPressArr: this.state.keyPressArr.push(keyPress)
+        keyPressArr: [...this.state.keyPressArr, keyPress]
       })
 
       return;
@@ -206,7 +205,7 @@ export default class Calculator extends Component {
       }
     }
     this.setState({
-      keyPressArr: this.state.keyPressArr.push(keyPress)
+      keyPressArr: [...this.state.keyPressArr, keyPress]
     })
     return;
   }
