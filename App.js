@@ -54,18 +54,23 @@ export default class Calculator extends Component {
         })
       }
       else if (keyPress in mathOperators) {
-        this.setState({
+        if(this.state.eqPressed) {
+          this.setState({
+            currentValue: 0,
+            operatorValue: mathOperators[keyPress]
+          })
+        } else {this.setState({
           currentValue: 0,
           storedValue: this.state.currentValue,
           operatorValue: mathOperators[keyPress]
-        })
+        })};
       } else if (keyPress === '=') {
         if (this.state.eqPressed) {
           this.setState({
             currentValue: 0,
             storedValue: this.state.operatorValue(this.state.afterEqValue, parseFloat(this.state.currentValue)),
             operatorValue: null,
-            
+
           })
 
         } else {
@@ -130,7 +135,7 @@ export default class Calculator extends Component {
       <View style={{ flex: 1 }}>
 
         <View style={styles.ioDisplay}>
-          <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue || this.state.afterEqValue}({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue})</Text>
+          <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue }({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue})</Text>
         </View>
 
         <View style={styles.calcButtonContainer}>
