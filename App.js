@@ -116,7 +116,7 @@ export default class Calculator extends Component {
             this.setState({
               currentValue: 0,
               storedValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue)),
-              operatorValue: mathOperators[this.state.lastKeyPress],
+              operatorValue: mathOperators[keyPress],
               mathOpPressed: false,
               decPressed: false
             })
