@@ -34,13 +34,15 @@ export default class Calculator extends Component {
       afterEqValue: 0,
       eqPressed: false,
       mathOpPressed: false,
-      decPressed: false
+      decPressed: false,
+      keyPressArr: []
     }
   }
 
   //--- Button Logic ---//
   checkBtnPress = keyPress => {
 
+    let lastKeyPress = this.state.keyPressArr[this.state.keyPressArr.length - 1];
     // check for storedValue
     if (this.state.storedValue) {
 
@@ -100,13 +102,24 @@ export default class Calculator extends Component {
               decPressed: false
             });
           } else {
+            if(!(lastKeyPress in mathOperators)) {
             this.setState({
               currentValue: '',
               storedValue: parseFloat(this.state.currentValue),
               operatorValue: mathOperators[keyPress],
-              decPressed: false
+              decPressed: false,
+              // mathOpPressed: !this.state.mathOpPressed
             });
+          } else  {
+            this.setState({
+              currentValue: 0,
+              storedValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue)),
+              operatorValue: null,
+              mathOpPressed: false,
+              decPressed: false
+            })
           }
+        }
           this.setState({ mathOpPressed: !this.state.mathOpPressed })
         }
 
@@ -153,9 +166,14 @@ export default class Calculator extends Component {
           afterEqValue: 0,
           eqPressed: false,
           mathOpPressed: false,
-          decPressed: false
+          decPressed: false,
+          keyPressArr: []
         })
       }
+      this.setState({
+        keyPressArr: this.state.keyPressArr.push(keyPress)
+      })
+
       return;
 
     } else {                                                  // if there is not a stored value (or sV === 0)
@@ -176,12 +194,20 @@ export default class Calculator extends Component {
       }
       else if (keyPress === 'A/C') {
         this.setState({
-          currentValue: 0,
-          storedValue: 0,
-          operatorValue: null
+          currentValue: '',
+          storedValue: '',
+          operatorValue: null,
+          afterEqValue: 0,
+          eqPressed: false,
+          mathOpPressed: false,
+          decPressed: false,
+          keyPressArr: []
         })
       }
     }
+    this.setState({
+      keyPressArr: this.state.keyPressArr.push(keyPress)
+    })
     return;
   }
 
@@ -191,7 +217,7 @@ export default class Calculator extends Component {
       <View style={{ flex: 1 }}>
 
         <View style={styles.ioDisplay}>
-          <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue || 0}({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue})</Text>
+          <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue || 0}({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue}) & LKP: {this.state.lastKeyPress}</Text>
         </View>
 
         <View style={styles.calcButtonContainer}>
