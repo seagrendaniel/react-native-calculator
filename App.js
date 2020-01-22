@@ -19,7 +19,7 @@ const mathOperators = {
   '-': function (x, y) { return (x - y) },
   '*': function (x, y) { return (x * y) },
   '/': function (x, y) { return (x / y) },
-  'abs': function(x) {return (abs(x))}
+  'abs': function (x) { return (abs(x)) }
 }
 
 // --- Calculator Layout --- //
@@ -39,24 +39,28 @@ export default class Calculator extends Component {
 
     // check for storedValue
     if (this.state.storedValue) {
-      if ((!isNaN(parseFloat(keyPress)) || keyPress === '.') && !this.state.operatorValue[keyPress]) {
-        if (this.state.currentValue) {
-          this.setState({
-            currentValue: this.state.currentValue + keyPress,
-            storedValue: this.state.currentValue + parseFloat(this.state.currentValue + keyPress)
-          })
-        };
+      if (!isNaN(parseFloat(keyPress))) {
+        this.setState({
+          currentValue: parseFloat(this.state.currentValue + keyPress)
+        })
+      }
+      else if(keyPress === '.') {
+        let cV = this.state.currentValue.toString() + keyPress;
+        this.setState({
+          currentValue: cV,
+          storedValue: cV
+        })
       }
       else if (keyPress in mathOperators) {
         this.setState({
-          currentValue: '',
+          currentValue: 0,
+          storedValue: this.state.currentValue,
           operatorValue: mathOperators[keyPress]
         })
-        return;
       } else if (keyPress === '=') {
         this.setState({
-          currentValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue)),
-          storedValue: this.state.currentValue,
+          currentValue: 0,
+          storedValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue)),
           operatorValue: null
         })
 
@@ -93,23 +97,23 @@ export default class Calculator extends Component {
         this.setState({ storedValue: parseFloat(cV) })
       }
       else if (keyPress === 'A/C') {
-        this.setState({ 
-         currentValue: 0, 
-         storedValue: 0,
-         operatorValue: null
+        this.setState({
+          currentValue: 0,
+          storedValue: 0,
+          operatorValue: null
         })
-        }
       }
-      return;
     }
-  
-    // render function
+    return;
+  }
+
+  // render function
   render() {
     return (
       <View style={{ flex: 1 }}>
 
         <View style={styles.ioDisplay}>
-          <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue }({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue}) & oV: {(typeof this.state.operatorValue)}</Text>
+          <Text style={styles.ioText}> cV: {this.state.currentValue || this.state.storedValue}({typeof this.state.currentValue}) & sV: {this.state.storedValue}({typeof this.state.storedValue})</Text>
         </View>
 
         <View style={styles.calcButtonContainer}>
