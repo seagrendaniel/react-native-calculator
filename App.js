@@ -32,7 +32,8 @@ export default class Calculator extends Component {
       operatorValue: null,
       storedValue: 0,
       afterEqValue: 0,
-      eqPressed: false
+      eqPressed: false,
+      mathOpPressed: false
     }
   }
 
@@ -54,22 +55,36 @@ export default class Calculator extends Component {
         })
       }
       else if (keyPress in mathOperators) {
+        if(this.state.mathOpPressed) {
+          // this.setState({mathOpPressed: !this.state.mathOpPressed})
+          return;
+        } else {
         if(this.state.eqPressed) {
           this.setState({
             currentValue: 0,
             operatorValue: mathOperators[keyPress]
-          })
-        } else {this.setState({
+          });
+        } else {
+          this.setState({
           currentValue: 0,
           storedValue: this.state.currentValue,
           operatorValue: mathOperators[keyPress]
-        })};
-      } else if (keyPress === '=') {
+        });
+      }
+      this.setState({mathOpPressed: !this.state.mathOpPressed})
+    }
+
+
+      } 
+      
+      else if (keyPress === '=') {
         if (this.state.eqPressed) {
           this.setState({
             currentValue: 0,
             storedValue: this.state.operatorValue(this.state.afterEqValue, parseFloat(this.state.currentValue)),
+            afterEqValue: this.state.operatorValue(this.state.afterEqValue, parseFloat(this.state.currentValue)),
             operatorValue: null,
+            mathOpPressed: false
 
           })
 
@@ -79,7 +94,8 @@ export default class Calculator extends Component {
             storedValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue)),
             afterEqValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue)),
             operatorValue: null,
-            eqPressed: !this.state.eqPressed
+            eqPressed: !this.state.eqPressed,
+            mathOpPressed: false
           })
         }
       } else if (keyPress === ('+/-')) {
@@ -97,10 +113,12 @@ export default class Calculator extends Component {
           storedValue: 0,
           operatorValue: null,
           afterEqValue: 0,
-          eqPressed: false
+          eqPressed: false,
+          mathOpPressed: false
         })
       }
       return;
+
     } else {                                                  // if there is not a stored value (or sV === 0)
       if (!isNaN(parseFloat(keyPress))) {
         let cV;
