@@ -92,30 +92,12 @@ export default class Calculator extends Component {
         cV = keyPress;
         this.setState({ storedValue: parseFloat(cV) })
       }
-      else if (keyPress in mathOperators) {
-
-        this.setState({
-          currentValue: '',
-          storedValue: parseFloat(this.state.currentValue),
-          operatorValue: mathOperators[keyPress]
-        })
-
-      } else if (keyPress === '=') {
-        this.setState({
-          currentValue: null,
-          storedValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue))
-        })
-      } else if (keyPress === ('+/-')) {
-        if (this.state.currentValue[0] === '-') {
-          this.setState({ currentValue: this.state.currentValue.slice(1) });
-        } else {
-          this.setState({ currentValue: ('-' + this.state.currentValue) })
-        }
-      }
-
       else if (keyPress === 'A/C') {
-        this.setState({ currentValue: '', })
-         storedValue: 0 
+        this.setState({ 
+         currentValue: 0, 
+         storedValue: 0,
+         operatorValue: null
+        })
         }
       }
       return;
