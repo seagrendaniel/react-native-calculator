@@ -28,9 +28,9 @@ export default class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentValue: 0,
+      currentValue: '0',
       operatorValue: null,
-      storedValue: 0,
+      storedValue: '0',
       afterEqValue: 0,
       eqPressed: false,
       mathOpPressed: false,
@@ -46,18 +46,12 @@ export default class Calculator extends Component {
 
       //--- Number Conditional ---//
       if (!isNaN(parseFloat(keyPress))) {
-        // if (parseFloat(keyPress) === 0) {
-        //   this.setState({
-        //     currentValue: this.state.currentValue,
-        //     storedValue: this.state.storedValue
-        //   });
-        // } else {
+
           this.setState({
-            currentValue: parseFloat(this.state.currentValue + keyPress),
-            storedValue: parseFloat(this.state.storedValue + keyPress)
+            currentValue: this.state.currentValue + keyPress,
+            storedValue: this.state.storedValue + keyPress
           });
         }
-      // }
 
       //--- Decimal Conditional ---//
       else if (keyPress === '.') {
@@ -88,14 +82,14 @@ export default class Calculator extends Component {
         } else {
           if (this.state.eqPressed) {
             this.setState({
-              currentValue: 0,
+              currentValue: '',
               operatorValue: mathOperators[keyPress],
               decPressed: false
             });
           } else {
             this.setState({
-              currentValue: 0,
-              storedValue: this.state.currentValue,
+              currentValue: '',
+              storedValue: parseFloat(this.state.currentValue),
               operatorValue: mathOperators[keyPress],
               decPressed: false
             });
