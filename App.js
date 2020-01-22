@@ -81,16 +81,17 @@ export default class Calculator extends Component {
       }
       return;
     } else {                                                  // if there is not a stored value (or sV === 0)
-      if (!isNaN(parseFloat(keyPress)) || keyPress === '.') {
+      if (!isNaN(parseFloat(keyPress))) {
         let cV;
         keyPress = parseFloat(keyPress);
+
         if (this.state.currentValue) {
           this.setState({
             currentValue: this.state.currentValue + keyPress,
           })
         } else {
           this.setState({
-            currentValue: keyPress,
+            currentValue: 0 + keyPress,
           });
         }
         cV = keyPress;
