@@ -116,6 +116,7 @@ export default class Calculator extends Component {
             this.setState({
               currentValue: 0,
               storedValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue)),
+              afterEqValue: this.state.operatorValue(this.state.storedValue, parseFloat(this.state.currentValue)),
               operatorValue: mathOperators[keyPress],
               mathOpPressed: false,
               decPressed: false
@@ -377,7 +378,7 @@ export default class Calculator extends Component {
 }
 
 
-
+// --- Styling ---//
 
 const styles = StyleSheet.create({
   ioDisplay: {
