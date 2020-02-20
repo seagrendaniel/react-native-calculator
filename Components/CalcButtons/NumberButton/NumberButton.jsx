@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image, TextInput} from 'react-native';
 import {Button} from 'react-native-elements';
 
+
 class NumberButton extends Component {
   render() {
     return(
@@ -9,8 +10,7 @@ class NumberButton extends Component {
         <Button
           style={styles.calcText}
           onPress={() => {this.props.checkBtnPress(this.props.value)}}
-            // alert(`You pressed the ${this.props.value} button`)
-          title={this.props.value}
+          title={this.props.value} // display title based on number value
           titleStyle={{
             color: 'black',
             fontSize: 40,

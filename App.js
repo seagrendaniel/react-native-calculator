@@ -182,7 +182,7 @@ export default class Calculator extends Component {
         let cV;
         if (this.state.currentValue) {
           this.setState({
-            currentValue: this.state.currentValue + keyPress,
+            currentValue: this.state.currentValue + keyPress, // TO BE TESTED to see if necessary
           })
         } else {
           this.setState({
